@@ -13,6 +13,6 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'ListingController@index')->name('home');
 
 Route::resource('listings', 'ListingControler');

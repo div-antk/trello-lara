@@ -5,21 +5,35 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Listing;
 use App\User;
+use Auth;
+use App\Repositories\ListingRepositoryInterface;
 
 class ListingController extends Controller
 {
-    public function __construct()
+    protected $ListingRepository;
+
+    public function __construct(
+        ListingRepositoryInterface $listingRepository
+    )
     {
         $this->middleware('auth');
+        $this->ListingRepository = $listingRepository;
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    
     public function index()
     {
-        //
+        $user_id = Auth::user()->id;
+        $listings = $this->listingRepository->getAll($user_id);
+
+        // $listings = Listing::where('user_id', $user_id)->get();
+
+        dd($listings);
     }
 
     /**
