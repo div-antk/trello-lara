@@ -29,11 +29,9 @@ class ListingController extends Controller
     public function index()
     {
         $user_id = Auth::user()->id;
-        $listings = $this->listingRepository->getAll($user_id);
+        $listings = $this->ListingRepository->getAll($user_id);
 
-        // $listings = Listing::where('user_id', $user_id)->get();
-
-        dd($listings);
+        return view('listings.index')->with('listings', $listings);
     }
 
     /**
