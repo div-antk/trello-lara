@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Listing;
 use App\User;
 use Auth;
+use App\Http\Requests\ListingRequest;
 use App\Repositories\ListingRepositoryInterface;
 
 class ListingController extends Controller
@@ -41,7 +42,7 @@ class ListingController extends Controller
      */
     public function create()
     {
-        //
+        return view('listings.create');
     }
 
     /**

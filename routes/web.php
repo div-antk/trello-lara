@@ -15,4 +15,4 @@ Auth::routes();
 
 Route::get('/home', 'ListingController@index')->name('home');
 
-Route::resource('listings', 'ListingControler');
+Route::resource('listings', 'ListingController');
