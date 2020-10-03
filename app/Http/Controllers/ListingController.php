@@ -51,9 +51,13 @@ class ListingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(listingRequest $request)
+    public function store(ListingRequest $request)
     {
-        //
+        $user_id = Auth::user()->id;
+        $this->ListingRepository->createList($user_id, $request->all());
+
+        return redirect(route('listings.index'));
+
     }
 
     /**

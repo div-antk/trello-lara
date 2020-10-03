@@ -23,4 +23,12 @@ class ListingRepository implements ListingRepositoryInterface
   {
     return $this->listing->where('user_id', $user_id)->get();
   }
+
+  public function createList($user_id, $request)
+  {
+    $d = $this->listing->create([
+      'user_id' => $user_id,
+      'title' => $request['title']
+    ]);
+  }
 }
