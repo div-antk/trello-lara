@@ -20,12 +20,6 @@ class ListingController extends Controller
         $this->middleware('auth');
         $this->ListingRepository = $listingRepository;
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
     
     public function index()
     {
@@ -35,71 +29,37 @@ class ListingController extends Controller
         return view('listings.index')->with('listings', $listings);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('listings.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(ListingRequest $request)
     {
         $user_id = Auth::user()->id;
         $this->ListingRepository->createList($user_id, $request->all());
 
         return redirect(route('listings.index'));
-
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Listing $listing)
     {
         return view('listings.edit')->with('listing', $listing);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(ListingRequest $request, $listing)
     {
-        //
+        $user_id = Auth::user()->id;
+        $this->ListingRepository->updateList($user_id, $request->all());
+
+        return redirect(route('listings.index'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

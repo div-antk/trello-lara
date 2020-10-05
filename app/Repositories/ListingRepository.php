@@ -26,9 +26,22 @@ class ListingRepository implements ListingRepositoryInterface
 
   public function createList($user_id, $request)
   {
-    $d = $this->listing->create([
+    return $this->listing->create([
       'user_id' => $user_id,
       'title' => $request['title']
     ]);
+  }
+
+  public function updateList($user_id, $request)
+  {
+    return $this->listing->where('id', $request['id'])->update([
+      'user_id' => $user_id,
+      'title' => $request['title']
+    ]);
+  }
+
+  public function deleteList($request)
+  {
+    return $this->listing->where('id', $request['id'])->delete();
   }
 }
