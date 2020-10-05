@@ -60,8 +60,9 @@ class ListingController extends Controller
         return redirect(route('listings.index'));
     }
 
-    public function destroy($id)
+    public function destroy($listing)
     {
-        //
+        dd($listing);
+        $this->ListingRepository->updateList($user_id, $request->all());
     }
 }
