@@ -42,6 +42,6 @@ class ListingRepository implements ListingRepositoryInterface
 
   public function deleteList($request)
   {
-    return $this->listing->where('id', $request['id'])->delete();
+    return $this->listing->where('id', $request)->delete();
   }
 }
